@@ -1,0 +1,29 @@
+### Sub Charts Specific Values ###
+foo-app:
+  enabled: true
+  service:
+    name: foo-service
+    port: 8080
+bar-app:
+  enabled: true
+  service:
+    name: bar-service
+    port: 8080
+
+ingress:
+  enabled: true
+  paths:
+    - pathType: Prefix
+      path: "/foo(/|$)(.*)"
+      backend:
+        service:
+          name: '{{ index .Values "foo-app" "service" "name" }}' # 変数名に `-` を含むので index で参照する
+        port:
+          number: '{{ index .Values "foo-app" "service" "port"}}' # 変数名に `-` を含むので index で参照する
+    - pathType: Prefix
+      path: "/bar(/|$)(.*)"
+      backend:
+        service:
+          name: '{{ index .Values "bar-app" "service" "name" }}' # 変数名に `-` を含むので index で参照する
+        port:
+          number: '{{ index .Values "bar-app" "service" "port"}}' # 変数名に `-` を含むので index で参照する
