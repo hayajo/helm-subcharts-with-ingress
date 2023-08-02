@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ required "A valid .Values.name entry required!" .Values.name }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: {{ required "A valid .Values.name entry required!" .Values.name }}
+  ports:
+  - port: {{ .Values.service.port }}
