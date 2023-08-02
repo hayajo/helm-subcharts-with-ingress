@@ -1,9 +1,0 @@
-image:
-  repository: registry.k8s.io/e2e-test-images/agnhost
-  pullPolicy: IfNotPresent
-  tag: "2.39"
-
-service:
-  name: ""
-  type: ClusterIP
-  port: 8080

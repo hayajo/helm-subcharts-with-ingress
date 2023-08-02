@@ -24,11 +24,13 @@ version: 0.1.0
 appVersion: "1.16.0"
 
 dependencies:
-- name: foo-app
-  repository: file://charts/foo-app
+- name: app
+  repository: file://charts/app
   version: 0.1.0
+  alias: foo-app # see. https://helm.sh/docs/topics/charts/#alias-field-in-dependencies
   condition: foo-app.enabled
-- name: bar-app
-  repository: file://charts/bar-app
+- name: app
+  repository: file://charts/app
   version: 0.1.0
+  alias: bar-app
   condition: bar-app.enabled
