@@ -12,7 +12,6 @@ spec:
           {{- /*
           range 内で tpl で変数を遅延評価するためにコンテキストを変数に入れる
           */}}
-          {{- $rootCtx := . -}}
           {{- range .Values.ingress.paths }}
           - path: {{ .path }}
             pathType: {{ .pathType }}
@@ -21,8 +20,8 @@ spec:
                 {{- /*
                 変数を遅延評価するので tpl に親コンテキストを渡す
                 */}}
-                name: {{ tpl .backend.service.name $rootCtx }}
+                name: {{ tpl .backend.service.name $ }}
                 port:
-                  number: {{ tpl .backend.port.number $rootCtx }}
+                  number: {{ tpl .backend.port.number $ }}
           {{- end }}
 {{- end }}
